@@ -1,13 +1,23 @@
 $(document).ready(function () {
+    //Trying the method from demo; removes error msgs in console, but still no functionality
+    //MY API key 
+    const myKey = "&appid=6277480031780c20e494b59b5119d621";
+
+    $("#search").click(function () {
+        var queryParam = $(this).prev().val();
+
+        if ($(this).prev().attr("placeholder") == "City") {
+            const weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + queryParam + "&APPID=" + myKey;
+        }
+    })
 
     //Current Date via moment.JS
     const currentDay = moment().format("MMMM Do YYYY");
 
     //API call for Current City Search
-    const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+    //const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-    //MY API key 
-    const myKey = "&appid=6277480031780c20e494b59b5119d621";
+
 
     var cityName = document.getElementById("#city-name");
     var searchBtn = document.getElementById("#search");
@@ -36,5 +46,5 @@ $(document).ready(function () {
             });
     };
 
-    searchBtn.addEventListener("click", getCurrentWeather);
+    //searchBtn.addEventListener("click", getCurrentWeather);
 });
