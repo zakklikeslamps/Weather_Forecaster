@@ -31,20 +31,18 @@
     <!--City Search Bar/Button-->
     <div class="container">
 
-        <section class="row">
+        <section class="col-4">
+            <div class="row">
+                <div class="card">
+                    <input type="text" id="city-name" placeholder="City">
 
-            <div class="col-4">
-                <input type="text" id="city-name" placeholder="City">
-
-                <button type="button" id="search" class="query_btn btn btn-default btn-sm">Search</button>
-
-                <button type="button" id="clear" class="query_btn btn btn-default btn-sm">Clear</button>
-
+                    <button type="button" id="search" class="query_btn btn btn-default btn-sm">Search</button>
+                </div>
+                <div class="card">
+                    <button type="button" id="clear" class="query_btn btn btn-default btn-sm">Clear</button>
+                    <ul class="list-group" id="city-list"></ul>
+                </div>
             </div>
-            <div>
-                <ul class="list-group" id="city-list"></ul>
-            </div>
-
         </section>
         <!--Search Results-->
         <section class="col-8">

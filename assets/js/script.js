@@ -12,8 +12,6 @@ $(document).ready(function () {
     //const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
     var cityName = document.getElementById("city-name");
-    var searchBtn = document.getElementById("search");
-    var clearBtn = document.getElementById("clear");
     var cities = document.getElementById("city-list");
     var currentCity = document.getElementById("city");
     var currentTemp = document.getElementById("temperature");
@@ -23,16 +21,19 @@ $(document).ready(function () {
     var forecast = document.getElementById("main-weather");
     var forecastImg = document.getElementById("weather_image");
 
-    $("#search").click(function () {
+    //Search Button
+    $("#search").on("click", function () {
 
         getCurrentWeather();
     })
 
+    //Gets current weather from Openweathermap
     function getCurrentWeather() {
-        console.log("Get Current Weather")
+        console.log("Your Search")
         var name = cityName.value;
         const weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
         console.log(weatherUrl)
+
         //API Call
         var currentWeather = weatherUrl + name + myKey;
 
@@ -44,14 +45,31 @@ $(document).ready(function () {
                 currentCity.innerHTML = weatherdata.name + " (" + currentDay + ")";
                 currentTemp.innerHTML = "Temperature : " + weatherdata.main.temp + " F";
                 currentHumidity.innerHTML = "Humidity : " + weatherdata.main.humidity + " %";
-                currentWinds.innerHTML = "Winds : " + weatherdata.main.wind + " mph";
+                currentWinds.innerHTML = "Winds : " + weatherdata.wind.speed + " mph";
+
             });
     };
 
-    //for (i=0; i<cities.length;i++);
+    //UV Index
+
+    //Local Storage
+    cities.textContent = "";
+
+    var cityQuery = localStorage.getItem("cityName");
+    if (cityQuery === null) {
+        cityQuery = [];
+    } else {
+        cityQuery = JSON.parse(cityQuery);
+    }
+    cityQuery.push(cityName);
+    var pastCities = JSON.stringify(cityQuery);
+    localStorage.setItem("cityName", pastCities);
+
+    //for (i = 0; i < cityQuery.length; i++);
+    //var prevCities
 
     $("clear").click(function () {
         localStorage.clear();
-        cityList.removeChild(cities);
+        cityList.removeChild(pastCities);
     })
 })
