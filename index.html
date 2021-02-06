@@ -13,7 +13,7 @@
     <!--Custom CSS-->
     <link rel="stylesheet" href="./assets/css/style.css">
 
-    <title>Weather Forecaster</title>
+    <title>Weather Dashboard</title>
 </head>
 
 <body>
@@ -22,15 +22,13 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"
-                        class="d-inline-block align-top">
                     Your Weather Dashboard
                 </a>
             </div>
         </nav>
     </div>
 
-    <!--Current City Search Bar-->
+    <!--City Search Bar/Button-->
     <div class="container">
 
         <section class="row">
@@ -56,6 +54,11 @@
                     </div>
                     <br>
                     <div>
+                        <h2>Forecast: <span id="main_weather"></span></h2>
+                        <img id="weather_image" src="">
+                    </div>
+                    <br>
+                    <div>
                         <h2>Temperature: <span id="temperature"></span></h2>
                     </div>
                     <br>
@@ -70,18 +73,14 @@
                     <div>
                         <h2>UV-Index: <span id="UV-index"></span></h2>
                     </div>
-                    <br>
-                    <div>
-                        <h2>Forecast: <span id="main_weather"></span></h2>
-                        <img id="weather_image" src="">
-                    </div>
 
+                    <br>
 
                 </div>
             </div>
         </section>
         <br>
-        <!--Five-Day Forecast-->
+        <!--Five-Day Forecast set into five cards-->
         <div class="row">
 
             <div class="col-span-12">
@@ -94,50 +93,50 @@
 
             <div class="col">
                 <div class="card bg-info">
-                    <div class="card body">
+                    <div id="day1" class="card body">
                         <h3 class="card-title">Date </h3>
-                        <p>Temp: </p>
-                        <p>Humidity: </p>
+                        <p id="day1T">Temp: </p>
+                        <p id="day1H">Humidity: </p>
                     </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card bg-info">
-                    <div class="card body">
+                    <div id="day2" class="card body">
                         <h3 class="card-title">Date </h3>
-                        <p>Temp: </p>
-                        <p>Humidity: </p>
+                        <p id="day2T">Temp: </p>
+                        <p id="day2H">Humidity: </p>
                     </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card bg-info">
-                    <div class="card body">
+                    <div id="day3" class="card body">
                         <h3 class="card-title">Date </h3>
-                        <p>Temp: </p>
-                        <p>Humidity: </p>
+                        <p id="day3T">Temp: </p>
+                        <p id="day3H">Humidity: </p>
                     </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card bg-info">
-                    <div class="card body">
+                    <div id="day4" class="card body">
                         <h3 class="card-title">Date </h3>
-                        <p>Temp: </p>
-                        <p>Humidity: </p>
+                        <p id="day4T">Temp: </p>
+                        <p id="day4H">Humidity: </p>
                     </div>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card bg-info">
-                    <div class="card body">
+                    <div id="day5" class="card body">
                         <h3 class="card-title">Date </h3>
-                        <p>Temp: </p>
-                        <p>Humidity: </p>
+                        <p id="day5T">Temp: </p>
+                        <p id="day5H">Humidity: </p>
                     </div>
                 </div>
             </div>
@@ -147,9 +146,9 @@
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
     integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="./assets/js/script.js"></script>
 
 </html>
