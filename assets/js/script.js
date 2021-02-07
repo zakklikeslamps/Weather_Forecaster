@@ -3,13 +3,12 @@ $(document).ready(function () {
     //MY API key 
     const myKey = "&appid=6277480031780c20e494b59b5119d621";
 
-
+    //Open Weather URLs
+    const onecall = "http://api.openweathermap.org/data/2.5/onecall?units=imperial&";
+    const weatherUrl = "http://api.openweathermap.org/data/2.5/weather?units=imperial&q=";
 
     //Current Date via moment.JS
     const currentDay = moment().format("MMMM Do YYYY");
-
-    //API call for Current City Search
-    //const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
     var cityName = document.getElementById("city-name");
     var cities = document.getElementById("city-list");
@@ -21,17 +20,18 @@ $(document).ready(function () {
     var forecast = document.getElementById("main-weather");
     var forecastImg = document.getElementById("weather_image");
 
+
     //Search Button
     $("#search").on("click", function () {
 
         getCurrentWeather();
     })
 
-    //Gets current weather from Openweathermap
+    //Current Weather 
     function getCurrentWeather() {
         console.log("Your Search")
         var name = cityName.value;
-        const weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+
         console.log(weatherUrl)
 
         //API Call
@@ -50,7 +50,56 @@ $(document).ready(function () {
             });
     };
 
-    //UV Index
+
+    //UV Index (still not working right)
+    var latitude = weatherdata.coord.lat;
+    var longitude = weatherdata.coord.lon;
+    var uvdata = onecall + "lat=" + latitude + "&lon=" + longitude + myKey;
+    console.log("url: ", uvdata)
+
+    fetch(uvdata)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (uvdata) {
+
+            console.log("uvdata", uvdata.daily[0].uvi)
+            uvIndex.textContent = "UV-Index : ";
+            var uvCurrent = uvdata.daily[0].uvi;
+            console.log(uvCurrent)
+            var p = document.createElement("p");
+            uvIndex.appendChild(p);
+            p.textContent = uvCurrent;
+
+            if (uvCurrent <= 2) {
+                p.setAttribute("class", "badge bg-success");
+            } else if (uvCurrent <= 6) {
+                p.setAttribute("class", "badge bg-warning");
+            } else if (uvCurrent > 6) {
+                p.setAttribute("class", "badge bg-danger");
+            }
+
+        });
+
+    //5-Day Forecast
+    var forecastdata = onecall + "lat=" + latitude + "&lon=" + longitude + myKey;
+    fetch(forecastdata)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            forecast.textContent = "";
+
+            for (i = 1; i < 6; i++);
+            var daily = new Date(data.daily[i].dt * 1000);
+            var dailyForecast = moment().format("MMMM Do YYYY");
+
+            var day1 = document.getElementById("day1");
+            var day2 = document.getElementById("day2");
+            var day3 = document.getElementById("day3");
+            var day4 = document.getElementById("day4");
+            var day5 = document.getElementById("day5");
+        })
 
     //Local Storage
     cities.textContent = "";
@@ -65,9 +114,8 @@ $(document).ready(function () {
     var pastCities = JSON.stringify(cityQuery);
     localStorage.setItem("cityName", pastCities);
 
-    //for (i = 0; i < cityQuery.length; i++);
-    //var prevCities
 
+    //Clear Button
     $("clear").click(function () {
         localStorage.clear();
         cityList.removeChild(pastCities);
