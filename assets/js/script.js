@@ -42,10 +42,10 @@ $(document).ready(function () {
                 return response.json();
             })
             .then(function (weatherdata) {
-                currentCity.innerHTML = weatherdata.name + " (" + currentDay + ")";
-                currentTemp.innerHTML = "Temperature : " + weatherdata.main.temp + " F";
-                currentHumidity.innerHTML = "Humidity : " + weatherdata.main.humidity + " %";
-                currentWinds.innerHTML = "Winds : " + weatherdata.wind.speed + " mph";
+                currentCity.textContent = weatherdata.name + " (" + currentDay + ")";
+                currentTemp.textContent = "Temperature : " + weatherdata.main.temp + " F";
+                currentHumidity.textContent = "Humidity : " + weatherdata.main.humidity + " %";
+                currentWinds.textContent = "Winds : " + weatherdata.wind.speed + " mph";
 
             });
     };
